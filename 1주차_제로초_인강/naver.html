@@ -192,7 +192,7 @@
              </div>
              <style>
                 #search > form {
-                    display: inline-block;
+                    display: inline-flex;
                     height: 60px;
                     width: 780px;
                     border: 1px solid #03c75a;
@@ -219,11 +219,14 @@
                     height: 24px;
                 }
                 #search-svg {
-                    display: inline-block;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
                     width: 68px;
                     margin-right: 12px;
                     height: 100%;
                     padding-left: 10px;
+                
                 }
                 #search-svg svg {
                     width: 24px;
@@ -241,7 +244,16 @@
                     outline: none;
                 }
                 #search-right {
-                    display: inline-block;
+                    flex: 1;
+                    display: flex;
+                    align-items: stretch;
+                    justify-content: flex-end;
+                }
+
+                #search-keyboard, #search-recent, #search-button {
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
                 }
 
                 #search-keyboard::before {
