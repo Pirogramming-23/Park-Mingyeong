@@ -230,8 +230,24 @@
                     margin-right: 12px;
                     height: 100%;
                     padding-left: 10px;
+                    position: relative;
                 
                 }
+
+                #search-svg::after {
+                    display: none;
+                }
+                #search > form:focus-within #search-svg::after {
+                    content: '';
+                    width: 1px;
+                    height: 20px;
+                    background-color: #e4e4e4;
+                    position: absolute;
+                    display: inline-block;
+                    right: 0;
+                    top: 20px;
+                }
+
                 #search-svg svg {
                     width: 24px;
                     height: 24px;
