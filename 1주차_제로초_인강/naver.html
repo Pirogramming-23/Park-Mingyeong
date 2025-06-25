@@ -163,7 +163,7 @@
             margin: -1px;
             overflow: hidden;
         }
-        #search-form{}
+
         
     </style>
 </head>
@@ -218,15 +218,83 @@
                     width: 24px;
                     height: 24px;
                 }
+                #search-svg {
+                    display: inline-block;
+                    width: 68px;
+                    margin-right: 12px;
+                    height: 100%;
+                    padding-left: 10px;
+                }
+                #search-svg svg {
+                    width: 24px;
+                    height: 24px;
+                    fill: #03c75a;
+                }
+
+                #search-input {
+                    width: 480px;
+                    padding: 17px 0;
+                    font-size: 17px 0;
+                    line-height: 24px;
+                    font-weight: bold;
+                    border: none;
+                    outline: none;
+                }
+                #search-right {
+                    display: inline-block;
+                }
+
+                #search-keyboard::before {
+                    content: "";
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.04eb92b7.png);
+                    background-size: 463px 442px;
+                    background-position: -148px -301px;
+                    background-repeat: no-repeat;
+                    width: 24px;
+                    height: 14px;
+                }
+
+                #search-recent::before {
+                    content: "";
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.04eb92b7.png);
+                    background-size: 463px 442px;
+                    background-position: -453px -422px;
+                    background-repeat: no-repeat;
+                    width: 10px;
+                    height: 6px;
+                }
+
+                #search-button::before {
+                    content: '';
+                    display: inline-block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.30918f90.png);
+                    background-size: 422px 405px;
+                    background-position: -364px -106px;
+                    background-repeat: no-repeat;
+                    width: 25px;
+                    height: 25px;
+                }
+
              </style>
              <div id="search">
                 <form action="">
-                    <a href="#">
+                    <a id="search-svg" href="#">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"></path></svg>
                     </a>    
-                    <label for="search-input" class="blind">검색어 입력</label>
-                    <input id="search-input" type="text">
-                    <button class="blind"></button>
+                    <label for="search-input" class="blind">검색어 입력</label><input id="search-input" type="text" placeholder="검색어를 입력하세요." >
+                    <div id="search-right">
+                        <button href="#" id="search-keyboard">
+                            <span class="blind">입력도구</span>
+                        </button>
+                        <button href="#" id="search-recent">
+                            <span class="blind">자동완성/최근검색어펼치기</span>
+                        </button>
+                        <button id="search-button">
+                            <div><span class="blind">검색<span></div>
+                        </button>       
+                        <button class="blind"></button>
                 </form>
             </div>
              <div id="nav"></div>
