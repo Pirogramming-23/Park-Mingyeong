@@ -360,11 +360,12 @@
                             <span class="blind">자동완성/최근검색어펼치기</span>
                         </button>
                         <button id="search-button">
-                            <div><span class="blind">검색<span></div>
+                            <div><span class="blind">검색</span></div>
                         </button>       
                         <button class="blind"></button>
                 </form>
             </div>
+
             <style>
                 #nav {
                     margin-top: 12px;
@@ -484,10 +485,10 @@
                     margin-top: 3px;
                 }
 
-
             </style>
-             <nav id="nav">
-             <ul>
+
+        <nav id="nav">
+            <ul>
                 <li>
                     <a href="">
                         <div></div>
@@ -551,7 +552,106 @@
                 </li>
             </ul>
         </nav>
-        </div>
+            <style>
+            #main {
+                margin-top: 51px;
+                display: flex;
+            }
+            
+            #main-left {
+                    width: 830px;
+                    margin-right: 30px;
+            }
+
+            #main-right {
+                width: 420px;
+            }
+
+            #main-left-ad, #main-right-ad {
+                background: gray;
+            }
+
+            aside[id$=ad] {
+                border-radius: 8px;
+                margin-bottom: 16px;
+                }
+
+            #main-left-ad {
+                height: 130px;
+                
+            }
+
+            section[id^=main] {
+                    box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+                    border-radius: 8px;
+                    margin-bottom: 16px;
+            }
+
+            #main-newstand{
+                height: 426px;
+            }
+
+            #main-shopping {
+                    height: 560px;
+                    display: flex;
+                    flex-flow: column;
+            }
+
+            #main-login {
+                    height: 164px;
+                    padding: 21px 20px 18px;
+                    font-size: 1.4rem;
+                    display: flex;
+                    flex-flow: column;
+            }
+
+            #main-right-ad {
+                height: 240px
+            }
+
+            .main-weather-and-stock > header {
+                    height: 52px;
+                    padding: 6px 0;
+            }
+
+            main-weather-and-stock > div {
+                border-top: 1px solid var(--color_border_in);
+            }
+
+            #main-weather, #main-stock {
+                padding: 0 18px;
+            }
+
+            #main-weather {
+                height: 236px;
+            }
+
+            #main-stock {
+                    height: 236px;
+                }
+                </style>
+
+
+
+        <main id="main">
+            <div id="main-left">
+                <aside id="main-left-ad"></aside>
+                <section id="main-newstand" class="left-section"></section>
+                <section id="main-shopping" class="left-section"></section>
+            </div>
+            <div id="main-right">
+                <section id="main-login"></section>
+                <aside id="main-right-ad"></aside>
+                <section id="main-weather" class="main-weather-and-stock">
+                    <header>날씨</header>
+                    <div></div>
+                </section>
+                <section id="main-stock" class="main-weather-and-stock">
+                    <header>증시</header>
+                </section>
+                    <div></div>
+        </main>
+
     </div>         
 </body>
 </html>
