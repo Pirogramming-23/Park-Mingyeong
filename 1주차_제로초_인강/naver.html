@@ -605,6 +605,37 @@
                     flex-flow: column;
             }
 
+            #main-login > div:last-of-type {
+                    font-size: 1.3rem;
+                    display: flex;
+                    justify-content: center;
+            }
+
+            #main-login > div:last-of-type > a:nth-of-type(2)::before, #main-login > div:last-of-type > a:nth-of-type(2)::after {
+                    content: '';
+                    display: inline-block;
+                    width: 1px;
+                    height: 12px;
+                    background-color: #d3d5d7;
+                    background-color: var(--color_dot_divider);
+                    margin: 4px 12px 0;
+
+
+
+            #main-login-button {
+                    margin-top: 13px;
+                    padding: 17px 0;
+                    border: 1px solid rgba(0,0,0,.06);
+                    height: 56px;
+                    border-radius: 4px;
+                    background-color: #03c75a;
+                    color: white;
+                    text-decoration: none;
+                    margin-bottom: 16px;
+            }
+
+            
+            
             #main-right-ad {
                 height: 240px
             }
@@ -634,13 +665,16 @@
 
 
         <main id="main">
-            <div id="main-left">
-                <aside id="main-left-ad"></aside>
-                <section id="main-newstand" class="left-section"></section>
-                <section id="main-shopping" class="left-section"></section>
-            </div>
             <div id="main-right">
-                <section id="main-login"></section>
+                <section id="main-login">
+                    <div>네이버를 더 안전하고 편리하게 이용하세요</div>
+                    <a href="#" id="main-login-button"><i></i>로그인</a>
+                    <div>
+                        <a href="#">아이디 찾기</a>
+                        <a href="#">비밀번호 찾기</a>
+                        <a href="#">회원가입</a>
+                    </div>
+                </section>
                 <aside id="main-right-ad"></aside>
                 <section id="main-weather" class="main-weather-and-stock">
                     <header>날씨</header>
@@ -648,8 +682,6 @@
                 </section>
                 <section id="main-stock" class="main-weather-and-stock">
                     <header>증시</header>
-                </section>
-                    <div></div>
         </main>
 
     </div>         
