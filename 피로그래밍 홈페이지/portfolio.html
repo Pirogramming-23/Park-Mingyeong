@@ -16,12 +16,34 @@
             color: white;
             font-family: 'Noto Sans KR', sans-serif;
         }
+
+        .logo img {
+          @media screen and (max-width:800px)
+            width: 30px;
+            height: 30px;
+        .menu {
+            display: flex;
+            gap: 16px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+
+        }
     </style>
 </head>
 <body>
     <div class="navabr">
         <div class="logo">
-            <img src="https://piro-homepage-bucket.s3.ap-northeast-2.amazonaws.com/images/icons/logo.svg"
+            <img src="https://piro-homepage-bucket.s3.ap-northeast-2.amazonaws.com/images/icons/logo.svg">
+        </div>
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Interview</a>
+            <a href="#">Gallery</a>
+            <a href="#">Recruit</a>
         </div>
     </div>
 </body>
