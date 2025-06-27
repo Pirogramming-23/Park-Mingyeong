@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>피로그래밍 포트폴리오</title>
     <style>
-            *{
+         *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -14,37 +14,204 @@
         body{
             background-color: #121212;
             color: white;
-            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1;
+            font-family: "Nexon", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            overflow-x: hidden;
+
         }
 
-        .logo img {
-          @media screen and (max-width:800px)
-            width: 30px;
-            height: 30px;
-        .menu {
+        li {
+            text-align: -webkit-match-parent;
+        }
+
+        html {
+            font-size: 62.5% !important;
+        }
+
+        
+
+        :root {
+            --black: #000;
+            --bg-3: rgb(222, 222, 222);
+            --bg-5: rgba(236, 236, 236, 0.466);
+            --bg-gray: #333333;
+            --scroll-bar-gray: #222222;
+            --line-gray: #606060;
+            --white: #fff;
+            --subtext-gray: #c6c6c6;
+            --green-1: #0bec12;
+            --green-2: rgba(73, 191, 77, 0.8);
+            --green-3: rgba(73, 191, 77, 0.6);
+            --blue: #2188b6;
+            --red: #c54422;
+            --badge-green: #35a67b;
+            --hero: 8rem;
+            --heading1: 3.8rem;
+            --heading2: 2.8rem;
+            --heading3: 2.2rem;
+            --subheading: 1.8rem;
+            --body1: 1.6rem;
+            --body2: 1.4rem;
+            --caption: 1.2rem;
+            --weight1: 400;
+            --weight2: 500;
+            --weight3: 700;
+            --offset: 40px;
+            --gutter: 16px;
+            --border-r: 8px;
+            --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            --transition: 0.15s;
+            --header-height: 9rem;
+        }
+
+        body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        ol, ul, li {
+            list-style: none;
+        }
+
+        @media screen and (max-width:800px) {
+            #main-header {
+            height: 7rem;
+        }
+        } 
+
+        @media screen and (max-width:768px) {
+            #main-header {
+            padding: 0 16px;
+        }
+        } 
+
+            #main-header {
+            background-color: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 0) 100%);
+            padding: 20px 40px;
             display: flex;
-            gap: 16px;
-            font-size: 1.8rem;
-            font-weight: 700;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
         }
 
+        @media screen and (max-width: 1250px) {
+            .header--container {
+                padding: 0;
+            }
+            }
 
+            .header--container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        
+            
         }
+            #main-header h1 img {
+            width: 40px;
+            height: 40px;
+        }
+
+        #main-header ul .selected-nav {
+            color: var(--green-1);
+        }
+
+        #main-header ul li {
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        #main-header ul {
+                display: flex;
+                gap: var(--gutter);
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            outline: none;
+        }
+        
+            
+    
+            @media screen and (max-width:800px) {
+                #main-header h1, #main-header h1 > a > img{
+                width: 30px;
+                height: 30px;
+                }
+            }
+
+            .container {
+                background-color: var(--black);
+                color: var(--white);
+                flex-direction: column;
+            }
+
+            .section-th--curr {
+                font-size: var(--heading3);
+            }
+    
+
+    
+
+
+        
     </style>
 </head>
-<body>
-    <div class="navabr">
-        <div class="logo">
-            <img src="https://piro-homepage-bucket.s3.ap-northeast-2.amazonaws.com/images/icons/logo.svg">
+    <body style="position: relative">
+        <div class="container flex_cc" style="position:relative">
+            <div id="custon cursor" class="custom-cursor custom_cursor hidden" 
+            style="transform:translate(1013px,216px)";>
+            <div class="custom-cursor-icon"></div>  
         </div>
-        <div class="menu">
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Portfolio</a>
-            <a href="#">Interview</a>
-            <a href="#">Gallery</a>
-            <a href="#">Recruit</a>
+    </body>
+    <header id="main-header">
+        <div class="header--container max width 1200">
+            <h1>
+                <a href="#">
+                    <img src="https://piro-homepage-bucket.s3.ap-northeast-2.amazonaws.com/images/icons/logo.svg" 
+                    alt="logo">
+                </a>    
+            </h1>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Interview</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Recruit</a></li>
+                <li class="selected-na">
+                    <a href="#">Portfolio</a>
+                </li>
+
+            </ul> 
+            <label id="hamburger-icon">
+                <label id="hamburger-icon">
+                    <input type="checkbox" />
+                    <div></div>
+                    <div></div>
+                    <div></div>
+            </label>
         </div>
-    </div>
+    </header>
+        <section id="portfolio" class="max-width-1200 avoi-nav">
+            <div class="section-th-next"></div>
+            <div class="section-th-curr">22기</div>
+            <a href="#">21기
+                <div class="section-th-prev">
+                    <span>21기</span>
+                        <i class="ri-arrow-right-s-line">
+                        ::before
+                        </i>
+                </div>
+            </a>
+        </section>
+     </section>
+    </footer>
 </body>
 </html>
