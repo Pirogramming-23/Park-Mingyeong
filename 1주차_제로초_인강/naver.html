@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"> 
+    <title>NAVER</title>
+    <style>
+        :root {
+            --color_title: #080808;
+            --color_title_rgb: 8, 8, 8;
+            --color_body: #101010;
+            --color_body_rgb: 16, 16, 16;
+            --color_caption1: #404040;
+            --color_caption1_rgb: 64, 64, 64;
+            --color_caption2: #606060;
+            --color_caption2_rgb: 96, 96, 96;
+            --color_caption3: #555558;
+            --color_caption3_rgb: 85, 85, 88;
+            --color_search: #000;
+            --color_search_rgb: 0, 0, 0;
+            --color_border_out: #e3e5e8;
+            --color_border_out_rgb: 227, 229, 232;
+            --color_border_in: #ebebeb;
+            --color_border_in_rgb: 235, 235, 235;
+            --color_border_in_divider: #ebebeb;
+            --color_border_in_divider_rgb: 235, 235, 235;
+            --color_border_in_exception: #ebebeb;
+            --color_border_in_exception_rgb: 235, 235, 235;
+            --color_button_border: #dadcdf;
+            --color_button_border_rgb: 218, 220, 223;
+            --color_dot_divider: #d3d5d7;
+            --color_dot_divider_rgb: 211, 213, 215;
+            --color_block_bg: #fff;
+            --color_block_bg_rgb: 255, 255, 255;
+            --color_board_bg: #f4f6fa;
+            --color_board_bg_rgb: 244, 246, 250;
+            --color_option_bg: #f5f7f8;
+            --color_option_bg_rgb: 245, 247, 248;
+            --color_login_bg: #fafbfb;
+            --color_login_bg_rgb: 250, 251, 251;
+            --color_menu_widget_bg: #fff;
+            --color_menu_widget_bg_rgb: 255, 255, 255;
+            --color_setting_bg: #fff;
+            --color_setting_bg_rgb: 255, 255, 255;
+            --color_button1_bg: #fff;
+            --color_button1_bg_rgb: 255, 255, 255;
+            --color_button2_bg: #fff;
+            --color_button2_bg_rgb: 255, 255, 255;
+            --color_news: #3a67ea;
+            --color_news_rgb: 58, 103, 234;
+            --color_news_econ_stay: #909aab;
+            --color_news_econ_stay_rgb: 144, 154, 171;
+            --color_news_econ_down: #4f67d6;
+            --color_news_econ_down_rgb: 79, 103, 214;
+            --color_live_news_price: #f4361e;
+            --color_live_news_price_rgb: 244, 54, 30;
+            --color_enter: #e538e2;
+            --color_enter_rgb: 229, 56, 226;
+            --color_enter_bg: #f2f1fb;
+            --color_enter_bg_rgb: 242, 241, 251;
+            --color_sports: #1f65ef;
+            --color_sports_rgb: 31, 101, 239;
+            --color_sports_bg: #f4f7fe;
+            --color_sports_bg_rgb: 244, 247, 254;
+            --color_econ: #008f76;
+            --color_econ_rgb: 0, 143, 118;
+            --color_calendar: #eb5b5b;
+            --color_calendar_rgb: 235, 91, 91;
+            --color_dic: #031f5f;
+            --color_dic_rgb: 3, 31, 95;
+            --color_shop: #9858f5;
+            --color_shop_rgb: 152, 88, 245;
+        }
+
+            * {
+                box-sizing: border-box;
+            }
+        html, body {
+            font-size: 10.5px;
+            line-height: 10.5px;
+            margin: 0;
+            padding: 0;
+            letter-spacing: -0.4px;
+            font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, "Apple SD Gothic Neo", sans-serif;
+        }
+
+        form, ul {
+
+            margin: 0;
+            padding: 0;
+            
+        }
+        
+        #wrap-center {
+            text-align: center;
+        }
+        #wrap-center {
+            width: 1280px;
+            display: inline-block;
+            background-color: white
+        }
+        #header {
+            text-align: left;
+            position: relative;
+            height: 64px;
+        }
+        #header-hamburger, #header-notice, #header-naverpay {
+            position: absolute;
+            top: 18px;
+            padding: 10px;
+            display: inline-block;  
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        
+        #header-hamburger:hover::before, #header-notice:hover::before, #header-naverpay:hover::before{
+            position: absolute;
+            content: '';
+            z-index: 0;
+            left: 1px;
+            top: 1px;
+            width: 44px;
+            height: 44px;
+            background-color: var(--color_option_bg);
+            border-radius: 50%;}
+
+        #header-hamburger > div, #header-notice > div, #header-naverpay > div {
+            background-image: url(./sp_main.png);
+            width: 26px;
+            height: 26px;
+            z-index: 1;
+            background-repeat: no-repeat;
+            background-size: 422px 405px;  
+        }
+
+        #header-hamburger {
+            left: -10px;
+        }
+
+        #header-hamburger > div {
+            background-position: -335px -284px;
+        }
+        
+        #header-naverpay {
+            right: 42px;
+            padding: 10px 8px;
+
+        }
+        
+        #header-naverpay > div {
+            width: 30px;
+            background-position: -31px -316px;
+        }
+            #header-notice {
+            right: -10px;
+
+        }
+
+    
+        #header-notice > div {
+            background-position: -364px -27px;
+        }
+        #main {
+            height: 2000px;
+        }
+        .blind {
+            position: absolute;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="wrap-center">
+             <div id="header">
+                <button id="header-hamburger">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">확장 영역</span>
+                    <!--after-->
+                </button>
+                <button id="header-naverpay">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">네이버 페이</span>
+                    <!--after-->
+                </button>
+                <button id="header-notice">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">알림</span>
+                    <!--after-->
+                </button>
+             </div>
+             <style>
+                #search > form {
+                    display: inline-flex;
+                    height: 60px;
+                    width: 780px;
+                    border: 1px solid #03c75a;
+                    border-radius: 33px;
+                    text-align: left;
+                }
+
+                #search > form:hover {
+                    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12);
+                }
+                    #search > form > input {
+                    width: 480px;
+                    height: 100%;
+                    padding: 17px 0;
+                    border: none;
+                    outline: none;
+                }
+                #search > form a {
+                    display: inline-block;
+                    width: 68px;
+                    height: 100px;
+                    padding: 17px;
+                    margin-right: 12px;
+
+                }
+                #search > form svg {
+                    width: 24px;
+                    height: 24px;
+                }
+                #search-svg {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 68px;
+                    margin-right: 12px;
+                    height: 100%;
+                    padding-left: 10px;
+                    position: relative;
+                
+                }
+
+                #search-svg::after {
+                    display: none;
+                }
+                #search > form:focus-within #search-svg::after {
+                    content: '';
+                    width: 1px;
+                    height: 20px;
+                    background-color: #e4e4e4;
+                    position: absolute;
+                    display: inline-block;
+                    right: 0;
+                    top: 20px;
+                }
+
+                #search-svg svg {
+                    width: 24px;
+                    height: 24px;
+                    fill: #03c75a;
+                }
+
+                #search-input {
+                    width: 480px;
+                    padding: 17px 0;
+                    font-size: 2rem;
+                    line-height: 24px;
+                    font-weight: bold;
+                    border: none;
+                    outline: none;
+                }
+
+                #search-input::placeholder {
+                    color: white;
+                } 
+                #search-input:focus::placeholder {
+                    color: #e4e4e4;
+                }
+
+                #search-right {
+                    flex: 1;
+                    display: flex;
+                    align-items: stretch;
+                    justify-content: flex-end;
+                }
+
+                #search-keyboard, #search-recent, #search-button {
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                }
+
+            
+
+                #search-keyboard::before {
+                    content: "";
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.04eb92b7.png);
+                    background-size: 463px 442px;
+                    background-position: -148px -301px;
+                    background-repeat: no-repeat;
+                    width: 24px;
+                    height: 14px;
+                }
+
+                #search-keyboard:hover::before {
+                    filter: brightness(0.7);
+                }
+
+                #search-recent::before {
+                    content: "";
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.04eb92b7.png);
+                    background-size: 463px 442px;
+                    background-position: -453px -422px;
+                    background-repeat: no-repeat;
+                    width: 10px;
+                    height: 6px;
+                }
+
+                #search-button {
+                    padding: 17px 27px 16px 10px;
+                }
+
+                #search-button > div {
+                    background: #03c75a;
+                    width: 25px;
+                    height: 25px;
+                }
+
+                #search-button > div::before {
+                    content: '';
+                    display: inline-block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.30918f90.png);
+                    background-size: 422px 405px;
+                    background-position: -364px -106px;
+                    background-repeat: no-repeat;
+                    width: 25px;
+                    height: 25px;
+                }
+
+             </style>
+             <div id="search">
+                <form action="">
+                    <a id="search-svg" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"></path></svg>
+                    </a>    
+                    <label for="search-input" class="blind">검색어 입력</label><input id="search-input" type="text" placeholder="검색어를 입력하세요." >
+                    <div id="search-right">
+                        <button href="#" id="search-keyboard">
+                            <span class="blind">입력도구</span>
+                        </button>
+                        <button href="#" id="search-recent">
+                            <span class="blind">자동완성/최근검색어펼치기</span>
+                        </button>
+                        <button id="search-button">
+                            <div><span class="blind">검색</span></div>
+                        </button>       
+                        <button class="blind"></button>
+                </form>
+            </div>
+
+            <style>
+                #nav {
+                    margin-top: 12px;
+                }
+
+                #nav > ul {
+                    display: flex;
+                    list-style-type: none;
+                    justify-content: center;
+                    font-size: 1.4rem;
+                    line-height: 20px;
+                    
+                }
+                #nav a {
+                    text-decoration: none;
+                    text-align: center;
+                }
+                
+                #nav a div {
+                
+                    position: relative;
+                
+                }
+
+                #nav a div::after {
+                    position: relative;
+                    z-index: 1;
+                    content: '';
+                    margin: 2px;
+                    display: inline-block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.30918f90.png);
+                    background-size: 422px 405px;
+                    background-repeat: no-repeat;
+                    width: 44px;
+                    height: 44px;
+                }
+
+
+                #nav a:visited {
+                    color: black;
+                }
+
+                #nav li {
+                    width: 64px;
+                    margin-left: 4px;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                #nav li:nth-of-type(1) {
+                    margin-left: 0;   
+                }
+
+                #nav li a div::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: -2px;
+                    left: -3px;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.30918f90.png);
+                    background-size: 422px 405px;
+                    background-position: 0px -128px;
+                    background-repeat: no-repeat;
+                    width: 54px;
+                    height: 54px;
+                }
+            
+            
+
+                #nav li:nth-of-type(2) {
+                    margin-left: 0;   
+                }
+
+                #nav li:nth-of-type(1) a div::after {
+                    background-position: -250px -90px;
+                }
+
+                #nav li:nth-of-type(2) a div::after {
+                    background-position: -250px -90px;
+                }
+
+                #nav li:nth-of-type(3) a div::after {
+                    background-position: -201px -98px;
+                }
+                #nav li:nth-of-type(4) a div::after {
+                    background-position: -90px -209px
+                }
+                #nav li:nth-of-type(5) a div::after {
+                    background-position: 0px -209px;
+                }
+                #nav li:nth-of-type(6) a div::after {
+                    background-position: -180px -209px;
+                }
+                #nav li:nth-of-type(7) a div::after {
+                    background-position: -45px -209px;
+                }
+                
+                #nav li:nth-of-type(8) a div::after {
+                    background-position: -201px 0px;
+                    width: 48px;
+                    height: 48px;
+                    top: -2px;
+                }
+                #nav li:nth-of-type(9) a div::after {
+                    background-position: -225px -209;
+                }
+                #nav li:nth-of-type(10) a div::after {
+                    background-position: -250px -135px;
+                }
+
+                #nav li a span {
+                    display: inline-block;
+                    margin-top: 7px;
+                }
+
+                #nav li:nth-of-type(8) a div::before {
+                    margin-top: 3px;
+                }
+
+            </style>
+
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>메일</span>
+                    </a>
+                </li>
+                <div></div>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>카페</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>블로그</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>쇼핑</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>뉴스</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>증권</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>부동산</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>지도</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span>웹툰</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div></div>
+                        <span class="blind">더보기</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+            <style>
+            #main {
+                margin-top: 51px;
+                display: flex;
+            }
+            
+            #main-left {
+                    width: 830px;
+                    margin-right: 30px;
+            }
+
+            #main-right {
+                width: 420px;
+            }
+
+            #main-left-ad, #main-right-ad {
+                background: gray;
+            }
+
+            aside[id$=ad] {
+                border-radius: 8px;
+                margin-bottom: 16px;
+                }
+
+            #main-left-ad {
+                height: 130px;
+                
+            }
+
+            section[id^=main] {
+                    box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+                    border-radius: 8px;
+                    margin-bottom: 16px;
+            }
+
+            #main-newstand{
+                height: 426px;
+            }
+
+            #main-shopping {
+                    height: 560px;
+                    display: flex;
+                    flex-flow: column;
+            }
+
+            #main-login {
+                    height: 164px;
+                    padding: 21px 20px 18px;
+                    font-size: 1.4rem;
+                    display: flex;
+                    flex-flow: column;
+            }
+
+            #main-login > div:last-of-type {
+                    font-size: 1.3rem;
+                    display: flex;
+                    justify-content: center;
+            }
+
+            #main-login > div:last-of-type > a:nth-of-type(2)::before, #main-login > div:last-of-type > a:nth-of-type(2)::after {
+                    content: '';
+                    display: inline-block;
+                    width: 1px;
+                    height: 12px;
+                    background-color: #d3d5d7;
+                    background-color: var(--color_dot_divider);
+                    margin: 4px 12px 0;
+
+
+
+            #main-login-button {
+                    margin-top: 13px;
+                    padding: 17px 0;
+                    border: 1px solid rgba(0,0,0,.06);
+                    height: 56px;
+                    border-radius: 4px;
+                    background-color: #03c75a;
+                    color: white;
+                    text-decoration: none;
+                    margin-bottom: 16px;
+            }
+
+            
+            
+            #main-right-ad {
+                height: 240px
+            }
+
+            .main-weather-and-stock > header {
+                    height: 52px;
+                    padding: 6px 0;
+            }
+
+            main-weather-and-stock > div {
+                border-top: 1px solid var(--color_border_in);
+            }
+
+            #main-weather, #main-stock {
+                padding: 0 18px;
+            }
+
+            #main-weather {
+                height: 236px;
+            }
+
+            #main-stock {
+                    height: 236px;
+                }
+                </style>
+
+
+
+        <main id="main">
+            <div id="main-right">
+                <section id="main-login">
+                    <div>네이버를 더 안전하고 편리하게 이용하세요</div>
+                    <a href="#" id="main-login-button"><i></i>로그인</a>
+                    <div>
+                        <a href="#">아이디 찾기</a>
+                        <a href="#">비밀번호 찾기</a>
+                        <a href="#">회원가입</a>
+                    </div>
+                </section>
+                <aside id="main-right-ad"></aside>
+                <section id="main-weather" class="main-weather-and-stock">
+                    <header>날씨</header>
+                    <div></div>
+                </section>
+                <section id="main-stock" class="main-weather-and-stock">
+                    <header>증시</header>
+        </main>
+
+    </div>         
+</body>
+</html>
