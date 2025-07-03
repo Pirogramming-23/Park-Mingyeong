@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚾ 숫자야구 ⚾</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+    <div id="container">
+        <div class="header">
+            <h1>⚾ 숫자야구 ⚾</h1>
+        </div>
+        <div class="game-board">
+            <div class="input-box">
+                <input type="text" class="input-field" maxlength="1" id="number1" autofocus>
+                <input type="text" class="input-field" maxlength="1" id="number2">
+                <input type="text" class="input-field" maxlength="1" id="number3">
+            </div>
+            <button class="submit-button" onclick="check_numbers()">확인하기</button>
+        </div>
+        <div class="game-result">
+            <img src="" id="game-result-img">
+        </div>
+        <div class="remaining-attempts">
+            남은 횟수: <span id="attempts">${attempts}</span>
+        </div>
+        <div class="result-display">
+            <div class="check-result">
+                <div id="results"></div>
+            </div>
+        </div>
+        <div class="footer" style="display: flex; justify-content: center;">
+            cloning by devkev00
+        </div>
+    </div>
+</body>
+</html>
