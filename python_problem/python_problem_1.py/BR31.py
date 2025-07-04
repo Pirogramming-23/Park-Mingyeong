@@ -1,4 +1,5 @@
 num = 0
+winner = ""  # 승자 저장
 
 while num < 31:
     # playerA 차례
@@ -15,6 +16,7 @@ while num < 31:
         num += 1
         print(f"playerA : {num}")
         if num == 31:
+            winner = "playerB"
             break
     if num == 31:
         break
@@ -33,6 +35,10 @@ while num < 31:
         num += 1
         print(f"playerB : {num}")
         if num == 31:
+            winner = "playerA"
             break
     if num == 31:
         break
+
+# 승자 출력
+print(f"{winner} win!")
