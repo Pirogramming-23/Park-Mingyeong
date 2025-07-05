@@ -1,0 +1,141 @@
+body {
+  background: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  padding: 40px 20px;
+  width: 350px;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.stopwatch-box {
+  background: #bfc8c2;
+  border-radius: 20px;
+  padding: 25px 20px 20px 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.display {
+  background: #fff;
+  border-radius: 10px;
+  font-size: 2.5rem;
+  padding: 10px 30px;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.buttons {
+  display: flex;
+  gap: 12px;
+}
+.buttons button {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  margin: 0 2px;
+  font-weight: 500;
+}
+
+.record-box {
+  background: #fff;
+  border-radius: 15px 15px 20px 20px;
+  padding: 10px 0 15px 0;
+  margin-top: 10px;
+}
+.record-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 15px 5px 15px;
+  border-bottom: 1px solid #d3d3d3;
+  margin-bottom: 0;
+  background: #bfc8c2;
+  border-radius: 15px 15px 0 0;
+}
+.record-header span {
+  flex: 1;
+  text-align: center;
+  font-weight: 500;
+}
+#deleteAll, #deleteSelected {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 2px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.record-list-bg {
+  background: #fff;
+  border-radius: 0 0 20px 20px;
+  box-shadow: none;
+  padding: 0;
+}
+#recordList {
+  list-style: none;
+  padding: 0 15px;
+  margin: 0;
+}
+#recordList li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 1.1rem;
+  background: transparent;
+}
+#recordList input[type="checkbox"], #selectAll {
+  width: 20px;
+  height: 20px;
+  accent-color: #7a8b7b;
+  border-radius: 50%;
+  appearance: none;
+  border: 2px solid #7a8b7b;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+#recordList input[type="checkbox"]:checked, #selectAll:checked {
+  background: #7a8b7b;
+  border: 2px solid #7a8b7b;
+}
+#recordList input[type="checkbox"]:checked::after, #selectAll:checked::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+} 
