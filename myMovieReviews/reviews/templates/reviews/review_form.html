@@ -1,0 +1,97 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}리뷰 수정{% else %}새 리뷰 작성{% endif %} - My Movie Reviews
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card movie-card">
+            <div class="card-header bg-transparent border-0 text-center">
+                <h2 class="mb-0">
+                    <span class="text-danger">Movie</span> review 🍿
+                </h2>
+            </div>
+            
+            <div class="card-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <!-- 영화 제목 -->
+                        <div class="col-12 mb-3">
+                            <label for="{{ form.title.id_for_label }}" class="form-label">
+                                제목:
+                            </label>
+                            {{ form.title }}
+                        </div>
+                        
+                        <!-- 개봉년도 -->
+                        <div class="col-12 mb-3">
+                            <label for="{{ form.release_year.id_for_label }}" class="form-label">
+                                개봉년도:
+                            </label>
+                            {{ form.release_year }}
+                        </div>
+                        
+                        <!-- 장르 -->
+                        <div class="col-12 mb-3">
+                            <label for="{{ form.genre.id_for_label }}" class="form-label">
+                                장르:
+                            </label>
+                            {{ form.genre }}
+                        </div>
+                        
+                        <!-- 별점 -->
+                        <div class="col-12 mb-3">
+                            <label for="{{ form.rating.id_for_label }}" class="form-label">
+                                별점:
+                            </label>
+                            {{ form.rating }}
+                        </div>
+                        
+                        <!-- 러닝타임 -->
+                        <div class="col-12 mb-3">
+                            <label for="{{ form.running_time.id_for_label }}" class="form-label">
+                                러닝타임:
+                            </label>
+                            {{ form.running_time }}
+                        </div>
+                        
+                        <!-- 리뷰 내용 -->
+                        <div class="col-12 mb-4">
+                            <label for="{{ form.review_content.id_for_label }}" class="form-label">
+                                리뷰:
+                            </label>
+                            {{ form.review_content }}
+                        </div>
+                        
+                        <!-- 감독 -->
+                        <div class="col-12 mb-3">
+                            <label for="{{ form.director.id_for_label }}" class="form-label">
+                                감독:
+                            </label>
+                            {{ form.director }}
+                        </div>
+                        
+                        <!-- 주연 -->
+                        <div class="col-12 mb-3">
+                            <label for="{{ form.cast.id_for_label }}" class="form-label">
+                                배우:
+                            </label>
+                            {{ form.cast }}
+                        </div>
+                    </div>
+                    
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-outline-secondary">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

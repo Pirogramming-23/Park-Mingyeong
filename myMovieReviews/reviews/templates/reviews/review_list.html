@@ -1,0 +1,64 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}영화 리뷰 목록 - My Movie Reviews{% endblock %}
+
+{% block content %}
+{% if reviews %}
+    <div class="row">
+        {% for review in reviews %}
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card movie-card">
+                <div class="movie-poster"></div>
+                <div class="movie-info">
+                    <h5 class="movie-title">
+                        <a href="{% url 'reviews:review_detail' review.pk %}" class="text-decoration-none text-dark">
+                            {{ review.title }}
+                        </a>
+                    </h5>
+                    <div class="movie-meta">개봉년도: {{ review.release_year }}</div>
+                    <div class="movie-meta">장르: {{ review.genre }}</div>
+                    <div class="movie-meta">별점: {{ review.rating }}</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% if is_paginated %}
+    <nav aria-label="페이지 네비게이션" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">
+                        <i class="fas fa-angle-double-left"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            {% endif %}
+            
+            <li class="page-item active">
+                <span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+            </li>
+            
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                        <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+    
+{% endif %}
+{% endblock %} 
