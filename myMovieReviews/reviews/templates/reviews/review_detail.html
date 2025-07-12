@@ -1,0 +1,60 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}{{ review.title }} - My Movie Reviews{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card movie-card">
+            <div class="card-header bg-transparent border-0">
+                <h1 class="mb-0">{{ review.title }}</h1>
+            </div>
+            
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="movie-poster mb-3"></div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="mb-3">
+                            <strong>개봉년도:</strong> {{ review.release_year }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>감독:</strong> {{ review.director }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>주연:</strong> {{ review.cast }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>장르:</strong> {{ review.genre }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>별점:</strong> {{ review.rating }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>러닝타임:</strong> {{ review.running_time }}분
+                        </div>
+                        <div class="mb-3">
+                            <strong>리뷰 내용:</strong>
+                            <div class="mt-2">
+                                {{ review.review_content|linebreaks }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-footer bg-transparent border-0">
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'reviews:review_update' review.pk %}" class="btn btn-outline-secondary me-2">
+                        수정
+                    </a>
+                    <a href="{% url 'reviews:review_delete' review.pk %}" class="btn btn-outline-secondary">
+                        삭제
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
