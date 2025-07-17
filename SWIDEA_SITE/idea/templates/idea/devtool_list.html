@@ -1,0 +1,67 @@
+{% extends 'idea/base.html' %}
+
+{% block title %}개발툴 목록 - My SW Idea Manage{% endblock %}
+
+{% block content %}
+<h1>DevTool List</h1>
+<p>등록된 개발툴을 확인할 수 있습니다.</p>
+
+<div style="background: white; border: 1px solid #ddd;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                <th style="padding: 1rem; text-align: left;">이름</th>
+                <th style="padding: 1rem; text-align: left;">종류</th>
+                <th style="padding: 1rem; text-align: left;">설명</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for devtool in page_obj %}
+            <tr style="border-bottom: 1px solid #dee2e6;">
+                <td style="padding: 1rem;">
+                    <a href="{% url 'idea:devtool_detail' devtool.id %}" style="color: #667eea; text-decoration: none; font-weight: bold;">
+                        {{ devtool.name }}
+                    </a>
+                </td>
+                <td style="padding: 1rem;">{{ devtool.kind }}</td>
+                <td style="padding: 1rem;">
+                    {% if devtool.content|length > 50 %}
+                        {{ devtool.content|slice:":50" }}...
+                    {% else %}
+                        {{ devtool.content }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" style="padding: 2rem; text-align: center; color: #666;">
+                    등록된 개발툴이 없습니다.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div style="text-align: center; margin: 2rem 0;">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+    {% else %}
+        <span style="color: #ccc;">이전</span>
+    {% endif %}
+    
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <span style="font-weight: bold; margin: 0 0.5rem;">{{ num }}</span>
+        {% else %}
+            <a href="?page={{ num }}" style="margin: 0 0.5rem;">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+    
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">다음</a>
+    {% else %}
+        <span style="color: #ccc;">다음</span>
+    {% endif %}
+</div>
+{% endblock %} 

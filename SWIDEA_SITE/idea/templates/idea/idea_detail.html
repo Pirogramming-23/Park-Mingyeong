@@ -1,0 +1,47 @@
+{% extends 'idea/base.html' %}
+
+{% block title %}{{ idea.title }} - My SW Idea Manage{% endblock %}
+
+{% block content %}
+<h1>Idea Detail</h1>
+<p>아이디어 세부사항을 확인하여 관리하시길 바랍니다.</p>
+
+<div style="margin: 2rem 0; background: white; padding: 2rem; border: 1px solid #ddd;">
+    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+        {% if idea.image %}
+            <img src="{{ idea.image.url }}" alt="{{ idea.title }}" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd; margin-right: 2rem;">
+        {% else %}
+            <div style="width: 100px; height: 100px; background: #f0f0f0; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; color: #666; margin-right: 2rem;">
+                이미지 없음
+            </div>
+        {% endif %}
+        <div>
+            <h2 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                {{ idea.title }}
+                <form method="post" action="{% url 'idea:toggle_star' idea.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="star {% if is_starred %}filled{% else %}empty{% endif %}" style="background: none; border: none; cursor: pointer; padding: 0; font-size: 1.5rem;">
+                        ★
+                    </button>
+                </form>
+            </h2>
+            <p><strong>아이디어 관심도:</strong> {{ idea.interest }}</p>
+            <p><strong>예상 개발툴:</strong> 
+                <a href="{% url 'idea:devtool_detail' idea.devtool.id %}" style="color: #667eea; text-decoration: none;">
+                    {{ idea.devtool.name }}
+                </a>
+            </p>
+            <p><strong>아이디어 설명:</strong></p>
+            <p>{{ idea.content|linebreaks }}</p>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; gap: 1rem; margin-top: 2rem;">
+    <a href="{% url 'idea:idea_edit' idea.id %}" class="btn">수정</a>
+    <a href="{% url 'idea:idea_delete' idea.id %}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+    <a href="{% url 'idea:idea_list' %}" class="btn btn-secondary">목록</a>
+</div>
+{% endblock %}
+
+ 

@@ -1,0 +1,27 @@
+{% extends 'idea/base.html' %}
+
+{% block title %}{{ devtool.name }} - My SW Idea Manage{% endblock %}
+
+{% block content %}
+<h1>DevTool Detail</h1>
+<p>개발툴 세부사항을 확인하여 관리하시길 바랍니다. 수정과 삭제는 각 기능을 사용하시길 바랍니다.</p>
+
+<div style="margin: 2rem 0; background: white; padding: 2rem; border: 1px solid #ddd;">
+    <h2 style="margin-bottom: 1rem; color: #333;">{{ devtool.name }}</h2>
+    
+    <div style="margin-bottom: 1rem;">
+        <p><strong>종류:</strong> {{ devtool.kind }}</p>
+    </div>
+    
+    <div style="margin-bottom: 2rem;">
+        <p><strong>설명:</strong></p>
+        <p>{{ devtool.content|linebreaks }}</p>
+    </div>
+</div>
+
+<div style="display: flex; gap: 1rem; margin-top: 2rem;">
+    <a href="{% url 'idea:devtool_edit' devtool.id %}" class="btn">수정</a>
+    <a href="{% url 'idea:devtool_delete' devtool.id %}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+    <a href="{% url 'idea:devtool_list' %}" class="btn btn-secondary">목록</a>
+</div>
+{% endblock %} 

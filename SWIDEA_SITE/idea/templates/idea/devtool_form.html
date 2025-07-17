@@ -1,0 +1,42 @@
+{% extends 'idea/base.html' %}
+
+{% block title %}{{ title }} - My SW Idea Manage{% endblock %}
+
+{% block content %}
+<h1>DevTool Register</h1>
+<p>자신이 다룰 수 있는 개발툴을 등록해보세요.</p>
+
+<form method="post" style="margin-top: 2rem;">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+        {{ form.name }}
+        {% if form.name.errors %}
+            <div style="color: red; font-size: 0.9rem;">{{ form.name.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.kind.id_for_label }}">{{ form.kind.label }}</label>
+        {{ form.kind }}
+        {% if form.kind.errors %}
+            <div style="color: red; font-size: 0.9rem;">{{ form.kind.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.content.id_for_label }}">{{ form.content.label }}</label>
+        {{ form.content }}
+        {% if form.content.errors %}
+            <div style="color: red; font-size: 0.9rem;">{{ form.content.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div style="margin-top: 2rem;">
+        <button type="submit" class="btn">SUBMIT</button>
+        <a href="{% url 'idea:devtool_list' %}" class="btn btn-secondary">취소</a>
+    </div>
+</form>
+
+{% endblock %} 

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My SW Idea Manage{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-links a:hover {
+            background: #34495e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .content {
+            background: white;
+            padding: 2rem;
+            border: 1px solid #ddd;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .messages {
+            margin-bottom: 1rem;
+        }
+
+        .messages div {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: #27ae60;
+            color: white;
+            border: 1px solid #2ecc71;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .card {
+            background: white;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            margin-bottom: 1rem;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 200px);
+            gap: 1rem;
+            justify-content: start;
+        }
+
+        .star {
+            color: #ddd;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .star.filled {
+            color: #ffd700;
+        }
+
+        .star.empty {
+            color: #ddd;
+        }
+
+        .interest-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .interest-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .interest-btn:hover {
+            background: #2980b9;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            gap: 0.5rem;
+        }
+
+        .pagination a, .pagination span {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+            background: white;
+        }
+
+        .pagination a:hover {
+            background: #f0f0f0;
+        }
+
+        .pagination .current {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .pagination .disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">My SW Idea Manage</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'idea:idea_create' %}">아이디어 등록</a></li>
+                <li><a href="{% url 'idea:idea_list' %}">아이디어 관리</a></li>
+                <li><a href="{% url 'idea:devtool_create' %}">개발툴 등록</a></li>
+                <li><a href="{% url 'idea:devtool_list' %}">개발툴 관리</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div>{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // CSRF 토큰 설정
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                }
+            }
+        });
+    </script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html> 
