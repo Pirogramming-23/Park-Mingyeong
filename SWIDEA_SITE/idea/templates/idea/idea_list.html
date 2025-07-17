@@ -1,0 +1,96 @@
+{% extends 'idea/base.html' %}
+
+{% block title %}아이디어 목록 - My SW Idea Manage{% endblock %}
+
+{% block content %}
+<h1>Ideas</h1>
+<p>등록된 아이디어를 확인하고 관심도를 조절해보세요.</p>
+
+<div style="margin: 2rem 0;">
+    <label for="sort" style="margin-right: 1rem;">정렬 기준:</label>
+    <select id="sort" onchange="sortIdeas(this.value)" style="padding: 0.5rem; border: 1px solid #ddd;">
+        <option value="star" {% if sort_by == 'star' %}selected{% endif %}>찜하기순</option>
+        <option value="name" {% if sort_by == 'name' %}selected{% endif %}>이름순</option>
+        <option value="created" {% if sort_by == 'created' %}selected{% endif %}>등록순</option>
+        <option value="latest" {% if sort_by == 'latest' %}selected{% endif %}>최신순</option>
+    </select>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, 200px); gap: 1rem; margin: 2rem 0;">
+    {% for idea in page_obj %}
+    <div style="background: white; padding: 1.5rem; border: 1px solid #ddd; height: 320px; position: relative;">
+        <div style="height: 180px; margin-bottom: 1rem;">
+            {% if idea.image %}
+                <img src="{{ idea.image.url }}" alt="{{ idea.title }}" style="width: 100%; height: 100%; object-fit: cover; border: 1px solid #ddd;">
+            {% else %}
+                <div style="width: 100%; height: 100%; background: #f0f0f0; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; color: #666;">
+                    이미지 없음
+                </div>
+            {% endif %}
+        </div>
+        
+        <div style="margin-bottom: 1rem;">
+            <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <a href="{% url 'idea:idea_detail' idea.id %}" style="color: #333; text-decoration: none;">
+                    {{ idea.title }}
+                </a>
+            </h3>
+            <p style="margin: 0; color: #666; font-size: 0.9rem;">{{ idea.devtool.name }}</p>
+        </div>
+        
+        <div style="position: absolute; bottom: 1rem; left: 1.5rem; right: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 0.9rem; color: #666;">관심도</span>
+                <form method="post" action="{% url 'idea:change_interest' idea.id 'down' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0; font-size: 1rem;">-</button>
+                </form>
+                <span id="interest-{{ idea.id }}" style="font-size: 1rem; min-width: 20px; text-align: center;">{{ idea.interest }}</span>
+                <form method="post" action="{% url 'idea:change_interest' idea.id 'up' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0; font-size: 1rem;">+</button>
+                </form>
+            </div>
+            
+            <form method="post" action="{% url 'idea:toggle_star' idea.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="star {% if idea.id in user_starred_ideas %}filled{% else %}empty{% endif %}" style="background: none; border: none; cursor: pointer; padding: 0; font-size: 1.5rem;">
+                    ★
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div style="text-align: center; margin: 2rem 0;">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort_by }}">이전</a>
+    {% else %}
+        <span style="color: #ccc;">이전</span>
+    {% endif %}
+    
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <span style="font-weight: bold; margin: 0 0.5rem;">{{ num }}</span>
+        {% else %}
+            <a href="?page={{ num }}&sort={{ sort_by }}" style="margin: 0 0.5rem;">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+    
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&sort={{ sort_by }}">다음</a>
+    {% else %}
+        <span style="color: #ccc;">다음</span>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function sortIdeas(value) {
+    window.location.href = '?sort=' + value + '&page=1';
+}
+</script>
+{% endblock %} 

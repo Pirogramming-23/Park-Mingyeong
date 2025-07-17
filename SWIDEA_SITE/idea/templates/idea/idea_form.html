@@ -1,0 +1,74 @@
+{% extends 'idea/base.html' %}
+
+{% block title %}{{ title }} - My SW Idea Manage{% endblock %}
+
+{% block content %}
+<h1>Idea Register</h1>
+<p>아이디어를 등록하여 관리하시길 바랍니다.</p>
+
+<form method="post" enctype="multipart/form-data" style="margin-top: 2rem;">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+        {{ form.title }}
+        {% if form.title.errors %}
+            <div style="color: red; font-size: 0.9rem;">{{ form.title.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+        
+        {% if form.instance.image %}
+            <div style="margin-bottom: 1rem;">
+                <p style="font-size: 0.9rem; color: #333; margin-bottom: 0.5rem;">현재 업로드된 이미지:</p>
+                <img src="{{ form.instance.image.url }}" alt="현재 이미지" style="max-width: 200px; max-height: 150px; border: 1px solid #ddd; display: block; margin-bottom: 0.5rem;">
+                <p style="font-size: 0.8rem; color: #666;">{{ form.instance.image.name }}</p>
+            </div>
+        {% endif %}
+        
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">
+            {% if form.instance.image %}
+                새로운 이미지를 선택하면 기존 이미지가 교체됩니다. 파일을 선택하지 않으면 기존 이미지가 유지됩니다.
+            {% else %}
+                파일을 선택해서 썸네일 이미지를 업로드하세요.
+            {% endif %}
+        </p>
+        {{ form.image }}
+        {% if form.image.errors %}
+            <div style="color: red; font-size: 0.9rem;">{{ form.image.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.content.id_for_label }}">{{ form.content.label }}</label>
+        {{ form.content }}
+        {% if form.content.errors %}
+            <div style="color: red; font-size: 0.9rem;">{{ form.content.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.interest.id_for_label }}">{{ form.interest.label }}</label>
+        {{ form.interest }}
+        {% if form.interest.errors %}
+            <div style="color: red; font-size: 0.9rem;">{{ form.interest.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.devtool.id_for_label }}">{{ form.devtool.label }}</label>
+        {{ form.devtool }}
+        {% if form.devtool.errors %}
+            <div style="color: red; font-size: 0.9rem;">{{ form.devtool.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div style="margin-top: 2rem;">
+        <button type="submit" class="btn">SUBMIT</button>
+        <a href="{% url 'idea:idea_list' %}" class="btn btn-secondary">취소</a>
+    </div>
+</form>
+
+{% endblock %} 
