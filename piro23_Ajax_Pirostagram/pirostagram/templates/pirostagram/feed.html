@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Pirostagram</title>
+    <link rel="stylesheet" href="/static/css/insta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="insta-feed-container">
+    {% for post in posts %}
+        <div class="insta-card">
+            <div class="insta-header">
+                <img class="insta-profile" src="/static/img/default_profile.png" alt="profile">
+                <div class="insta-header-info">
+                    <span class="insta-username">{% if post.author %}{{ post.author.username }}{% else %}익명{% endif %}</span>
+                    <span class="insta-time">{{ post.created_at|date:"Y년 n월 j일 H:i" }}</span>
+                </div>
+                <span class="insta-header-menu">•••</span>
+            </div>
+            <div class="insta-image-wrap">
+                <img class="insta-image" src="{{ post.image.url }}" alt="post image">
+            </div>
+            <div class="insta-actions">
+                <button class="like-btn" data-post-id="{{ post.id }}" data-like-url="{% url 'like_toggle' %}">❤️ <span class="like-count">{{ post.likes.count }}</span></button>
+                <button class="comment-btn">💬</button>
+                <button class="save-btn">🔖</button>
+            </div>
+            <div class="insta-likes">좋아요 <span class="like-count">{{ post.likes.count }}</span>개</div>
+            <div class="insta-content">
+                <b>{% if post.author %}{{ post.author.username }}{% else %}익명{% endif %}</b> {{ post.content }}
+            </div>
+            <div class="comment-list" data-post-id="{{ post.id }}">
+                {% for comment in post.comments.all %}
+                    <div data-comment-id="{{ comment.id }}">
+                        <b>
+                            {% if not comment.author %}
+                                {% if forloop.counter == 1 %}
+                                    luckyclody
+                                {% elif forloop.counter == 2 %}
+                                    hamzzi
+                                {% else %}
+                                    익명
+                                {% endif %}
+                            {% else %}
+                                {{ comment.author.username }}
+                            {% endif %}
+                        </b> {{ comment.content }}
+                        {% if comment.author %}
+                            <button class="comment-delete-btn" data-comment-id="{{ comment.id }}">삭제</button>
+                        {% else %}
+                            {% if forloop.counter > 2 %}
+                                <button class="comment-delete-btn" data-comment-id="{{ comment.id }}">삭제</button>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <form class="comment-form" data-post-id="{{ post.id }}" data-add-url="{% url 'comment_add' %}">
+                <input type="text" name="content" placeholder="댓글 달기..." required>
+                <button type="submit">게시</button>
+            </form>
+        </div>
+    {% empty %}
+        <p>게시글이 없습니다.</p>
+    {% endfor %}
+    </div>
+    <script>
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+        window.COMMENT_DELETE_URL = "{% url 'comment_delete' %}";
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/ajax.js"></script>
+</body>
+</html> 
